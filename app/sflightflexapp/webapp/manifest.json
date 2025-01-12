@@ -1,0 +1,108 @@
+{
+  "_version": "1.65.0",
+  "sap.app": {
+    "id": "com.flex.travel.sflightflexapp",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:fpm",
+      "version": "1.16.1",
+      "toolsId": "ac3a70e4-8be1-4a1f-bb87-714a4afb10c4"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/processor/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "odataVersion": "4.0"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.131.1",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.fe.core": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "com.flex.travel.sflightflexapp.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      },
+      "@i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "uri": "i18n/i18n.properties"
+      }
+    },
+    "resources": {
+      "css": []
+    },
+    "routing": {
+      "config": {},
+      "routes": [
+        {
+          "name": "TravelMain",
+          "pattern": ":?query:",
+          "target": "TravelMain"
+        }
+      ],
+      "targets": {
+        "TravelMain": {
+          "type": "Component",
+          "id": "TravelMain",
+          "name": "sap.fe.core.fpm",
+          "options": {
+            "settings": {
+              "navigation": {},
+              "contextPath": "/Travel",
+              "viewName": "com.flex.travel.sflightflexapp.ext.main.Main"
+            }
+          }
+        }
+      }
+    }
+  }
+}
