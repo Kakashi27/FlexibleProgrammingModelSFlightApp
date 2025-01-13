@@ -225,12 +225,15 @@ init() {
         IsActiveEntity = BookingItems.IsActiveEntity
         BookingUUID = BookingItems.BookingUUID
       }
-      if (IsActiveEntity) {
+      if (IsActiveEntity && IsActiveEntity == false) {
+        TravelTarget = Travel.drafts
+        BookingTarget = Booking.drafts
+      } else if(IsActiveEntity && IsActiveEntity == true){
         TravelTarget = Travel
         BookingTarget = Booking
       } else {
-        TravelTarget = Travel.drafts
-        BookingTarget = Booking.drafts
+        TravelTarget = Travel
+        BookingTarget = Booking
       }
 
       const { travel } =
@@ -304,7 +307,9 @@ init() {
 
     this.on("READ", "Booking", async (context, next) => {
       var bookings = await next()
-      if ( bookings != null && context.query.SELECT.columns && (context.query.SELECT.columns.find(c => c.ref[0] === 'BookedFlights'))){
+      if ( bookings != null && context.query.SELECT.columns 
+        // && (context.query.SELECT.columns.find(c => c.ref[0] === 'BookedFlights'))
+      ){
         if (Array.isArray(bookings)) {
           return await _readBookedFlightsSingleAirline(bookings, context)       
         } else {
