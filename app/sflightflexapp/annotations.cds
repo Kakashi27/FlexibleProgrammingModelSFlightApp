@@ -1,10 +1,13 @@
 using TravelService as service from '../../srv/travel-service';
+using from '../../db/schema';
+
 
 annotate service.Travel with @(
     UI.SelectionFields: [
         to_Agency.AgencyID,
         to_Customer.CustomerID,
         TravelStatus.code,
+        TravelID
     ],
     UI.LineItem       : [
         {
@@ -66,4 +69,20 @@ annotate service.Travel with @(
             Value: Description,
         },
     },
+    UI.Identification : [
+        {
+            $Type : 'UI.DataFieldForAction',
+            Action : 'TravelService.acceptTravel',
+            Label : '{i18n>acceptTravel}',
+        },
+        {
+            $Type : 'UI.DataFieldForAction',
+            Action : 'TravelService.rejectTravel',
+            Label : '{i18n>rejectTravel}',
+        },
+    ],
 );
+annotate service.TravelStatus with {
+    code @Common.Label : '{i18n>TravelStatus}'
+};
+
