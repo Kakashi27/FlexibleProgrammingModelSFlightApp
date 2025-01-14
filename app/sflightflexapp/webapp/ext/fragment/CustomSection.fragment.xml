@@ -1,0 +1,27 @@
+<core:FragmentDefinition
+    xmlns:layout="sap.ui.layout"
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+    xmlns:macros="sap.fe.macros"
+>
+    <VBox
+        core:require="{ handler: 'com/flex/travel/sflightflexapp/ext/fragment/CustomSection'}"
+    >
+        <!-- <Button text="CustomSection" press="handler.onPress" /> -->
+        <MessageStrip
+            text="All the bookings for the Travel Id {TravelID} has been confirmed."
+            showIcon="true"
+        />
+        <layout:Grid
+            hSpacing="1"
+            containerQuery="true"
+        >
+            <layout:content>
+                <macros:Table
+                    metaPath="to_Booking/@UI.LineItem#i18nMyItinerary"
+                    id=""
+                />
+            </layout:content>
+        </layout:Grid>
+    </VBox>
+</core:FragmentDefinition>

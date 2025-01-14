@@ -112,12 +112,6 @@ annotate service.Travel with @(
             },
         ],
     },
-        {
-            $Type : 'UI.ReferenceFacet',
-            Label : '{i18n>MyItinerary}',
-            ID : 'i18nMyItinerary',
-            Target : 'to_Booking/@UI.LineItem#i18nMyItinerary',
-        },
          ],
     UI.FieldGroup #i18nTravel        : {
         $Type: 'UI.FieldGroupType',

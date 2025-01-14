@@ -19,7 +19,9 @@ sap.ui.define(
 			},
 			handlers: {
                 onTilePress: function(oEvent) {
-                    MessageToast.show("Tile pressed!");
+                    // MessageToast.show("Tile pressed!");
+					var oContext = oEvent.getSource().getBindingContext();
+					this.routing.navigate(oContext);
                 },
 				onFiltersChanged: function (oEvent) {
 					var oView = this.getView();
