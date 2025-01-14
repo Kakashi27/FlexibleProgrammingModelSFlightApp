@@ -207,6 +207,11 @@ annotate service.Booking with @(
             Label : 'AirlinePicURL',
         },
         {
+            $Type : 'UI.DataFieldForAnnotation',
+            Target : '@UI.Chart#BookedFlights',
+            Label : '{i18n>Bookedflights}',
+        },
+        {
             $Type : 'UI.DataField',
             Value : BookingID,
             Label : 'BookingID',
@@ -241,6 +246,24 @@ annotate service.Booking with @(
             Value : BookingStatus_code,
             Label : 'BookingStatus_code',
         },
-    ]
+    ],
+    UI.DataPoint #BookedFlights : {
+        Value : BookedFlights,
+        TargetValue : to_Carrier.VIPCustomerBookings,
+        Criticality : EligibleForPrime,
+    },
+    UI.Chart #BookedFlights : {
+        ChartType : #Donut,
+        Measures : [
+            BookedFlights,
+        ],
+        MeasureAttributes : [
+            {
+                DataPoint : '@UI.DataPoint#BookedFlights',
+                Role : #Axis1,
+                Measure : BookedFlights,
+            },
+        ],
+    },
 );
 

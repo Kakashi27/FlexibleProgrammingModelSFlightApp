@@ -10,7 +10,7 @@ using {
 namespace sap.fe.cap.travel;
 
 entity Travel : managed {
-  key TravelUUID : String(30);
+  key TravelUUID : String(36);
   TravelID       : Integer default 0 @readonly  @Common.Text: Description;
   BeginDate      : Date;
   EndDate        : Date;
@@ -27,7 +27,7 @@ entity Travel : managed {
   to_Booking     : Composition of many Booking on to_Booking.to_Travel = $self;
 };
 entity Booking : managed {
-  key BookingUUID   : String(30);
+  key BookingUUID   : String(36);
   BookingID         : Integer @Core.Computed;
   BookingDate       : Date;
   ConnectionID      : String(4);
